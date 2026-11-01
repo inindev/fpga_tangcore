@@ -10,6 +10,14 @@ TangCore is a comprehensive FPGA gaming distribution that brings classic gaming 
 
 Please [file an issue](https://github.com/nand2mario/tangcore/issues) if you run into any problems, like game compatibility and display glitches.
 
+> [!NOTE]
+> This is a fork of [nand2mario/tangcore](https://github.com/nand2mario/tangcore). The `inindev` branch adds
+> **Tang Nano 20K** support (NES and SNES) and uses forks of four submodules with the fixes it needs:
+> [fpga_nestang](https://github.com/inindev/fpga_nestang), [fpga_snestang](https://github.com/inindev/fpga_snestang),
+> [fpga_monitorcore](https://github.com/inindev/fpga_monitorcore) and
+> [fpga_firmware-bl616](https://github.com/inindev/fpga_firmware-bl616) (now on the official Bouffalo SDK).
+> See [Tang Nano 20K](#-tang-nano-20k) below. Only the Nano 20K has been tested on this branch.
+
 ## 🎮 Supported Systems
 
 <div align="center">
@@ -47,8 +55,22 @@ Please [file an issue](https://github.com/nand2mario/tangcore/issues) if you run
 | [Tang Console 60K](https://sipeed.com/tangconsole) | ✅ Recommended | Best overall experience |
 | Tang Console 138K | ✅ Experimental | Supported since April 2025 |
 | Tang Primer 25K | ✅ Experimental | NES/SNES only |
+| Tang Nano 20K | ✅ Experimental (this fork) | NES/SNES only, USB gamepads and keyboard |
 
 <img src="doc/tangcore-boards.jpg" width=450> 
+
+## 🔌 Tang Nano 20K
+
+The Nano 20K runs the TangCore firmware on its on-board BL616, next to Sipeed's FPGA Partner
+firmware, in place of [FPGA-Companion](https://github.com/MiSTle-Dev/FPGA-Companion).
+
+1. Build the cores and firmware: [building from sources](docs/dev-guide/building.md#tang-nano-20k-linux).
+2. Write the firmware to the BL616 at 0x40000: [installation](docs/user-guide/installation.md#tang-nano-20k).
+3. Put the cores on a USB drive as `cores/nano20k/monitor.bin`, `nestang.bin` and `snestang.bin`,
+   with ROMs in `nes/` and `snes/`. The board's TF slot can't be used (it's wired to the FPGA);
+   a USB microSD reader works.
+4. Connect the drive, gamepads and keyboard through a USB hub and an OTG adapter with power
+   pass-through on the USB-C port.
 
 ## 🚀 Quick Start
 
@@ -68,7 +90,7 @@ TangCore uses a different architecture compared to individual cores (NESTang/SNE
 - USB storage support
 - SOM-connector debugging interface
 
-For detailed development information, see an introduction to [TangCore archtecture](https://nand2mario.github.io/tangcore/dev-guide/architecture/), [building from sources](https://nand2mario.github.io/tangcore/dev-guide/building/), how to [develop a new core](https://nand2mario.github.io/tangcore/dev-guide/core-development/), and [core debugging guide](https://nand2mario.github.io/tangcore/dev-guide/core-debugging/).
+For detailed development information, see an introduction to [TangCore archtecture](https://nand2mario.github.io/tangcore/dev-guide/architecture/), [building from sources](docs/dev-guide/building.md), how to [develop a new core](https://nand2mario.github.io/tangcore/dev-guide/core-development/), and [core debugging guide](https://nand2mario.github.io/tangcore/dev-guide/core-debugging/).
 
 My blog post on TangCore,
 

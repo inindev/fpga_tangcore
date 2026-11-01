@@ -1,24 +1,28 @@
-[submodule "firmware-bl616"]
-	path = firmware-bl616
-	url = ../firmware-bl616.git
-[submodule "nestang"]
-	path = nestang
-	url = ../nestang.git
-[submodule "snestang"]
-	path = snestang
-	url = ../snestang.git
 [submodule "gbatang"]
 	path = gbatang
-	url = ../gbatang.git
+	url = https://github.com/nand2mario/gbatang.git
 [submodule "mdtang"]
 	path = mdtang
-	url = ../mdtang.git
-[submodule "monitor"]
-	path = monitor
-	url = ../monitorcore.git
+	url = https://github.com/nand2mario/mdtang.git
 [submodule "smstang"]
 	path = smstang
-	url = ../smstang.git
+	url = https://github.com/nand2mario/smstang.git
 [submodule "pctang"]
 	path = pctang
-	url = ../pctang.git
+	url = https://github.com/nand2mario/pctang.git
+[submodule "fpga_nestang"]
+	path = fpga_nestang
+	url = ../fpga_nestang.git
+	branch = inindev
+[submodule "fpga_snestang"]
+	path = fpga_snestang
+	url = ../fpga_snestang.git
+	branch = inindev
+[submodule "fpga_monitorcore"]
+	path = fpga_monitorcore
+	url = ../fpga_monitorcore.git
+	branch = inindev
+[submodule "fpga_firmware-bl616"]
+	path = fpga_firmware-bl616
+	url = ../fpga_firmware-bl616.git
+	branch = inindev

@@ -24,10 +24,10 @@ Please [file an issue](https://github.com/nand2mario/tangcore/issues) if you met
 ## Generating core logo
 
 Whenever a core is loaded on the FPGA, its logo is displayed at the bottom of the overlay page. When you create
-a new core, you probably want to make a new logo too. There is a script `tangcore/monitor/scripts/genlogo.py` to help with that. Read the script and make adjustments to the logo you want generate. Then,
+a new core, you probably want to make a new logo too. There is a script `fpga_tangcore/fpga_monitorcore/scripts/genlogo.py` to help with that. Read the script and make adjustments to the logo you want generate. Then,
 
 ```bash
-cd tangcore/monitor/scripts
+cd fpga_tangcore/fpga_monitorcore/scripts
 python genlogo.py
 ```
 

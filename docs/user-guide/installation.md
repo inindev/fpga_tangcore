@@ -7,7 +7,7 @@
 | Tang Console 60K  | 60K LUT       | All cores                    | ✔️ Great     |
 | Tang Console 138K | 138K LUT      | All cores                    | ✔️ Great     |
 | Tang Primer 25K   | 25K LUT       | NESTang, SNESTang            | ✔️ Experimental (v0.7) |
-NESTang/SNESTang   |
+| Tang Nano 20K     | 20K LUT       | NESTang, SNESTang            | ✔️ Experimental (inindev fork), see [below](#tang-nano-20k) |
 
 ---
 
@@ -82,6 +82,51 @@ NESTang/SNESTang   |
    *Navigation using gamepad*
 
 ---
+
+## Tang Nano 20K
+
+The steps above are for the Tang Console. On the Nano 20K, TangCore runs on the on-board
+BL616 next to Sipeed's FPGA Partner firmware, in the slot FPGA-Companion would use. There is no
+release package yet; build the cores and firmware as in [building from sources](../dev-guide/building.md#tang-nano-20k-linux).
+
+### Firmware
+
+1. The BL616 needs Sipeed's FPGA Partner firmware (`bl616_fpga_partner_20kNano.bin`) at flash
+   address 0x0. Boards that run [FPGA-Companion](https://github.com/MiSTle-Dev/FPGA-Companion) on
+   the BL616 already have it; it's in FPGA-Companion's `src/bl616/bl616_fpga_partner/`.
+2. Put the BL616 in update mode: unplug the board, hold **UPDATE** (next to the HDMI connector),
+   plug it into the computer, release. It shows up as `Bouffalo CDC DEMO`.
+3. Write `fpga_firmware-bl616/build/build_out/tangcore_bl616.bin` to address 0x40000 with
+   Bouffalo's flash tool (`BLFlashCommand`, or the open-source `bflb-mcu-tool`).
+
+With TangCore installed, the board no longer shows up as a USB debugger when plugged into a
+computer, because the BL616 starts TangCore instead. To flash the FPGA with openFPGALoader again,
+erase 0x40000 or write FPGA-Companion back there.
+
+### USB drive
+
+```bash
+📁 /
+├── 📁 cores/
+│    └── 📁 nano20k/
+│         ├── 🗎 monitor.bin    # from monitor_nano20k.bin
+│         ├── 🗎 nestang.bin    # from nestang_nano20k.bin
+│         └── 🗎 snestang.bin   # from snestang_nano20k.bin
+├── 📁 nes/          # .nes rom files
+└── 📁 snes/         # .smc/.sfc files
+```
+
+- The board's TF slot is wired to the FPGA, not the BL616, so it can't hold the cores or ROMs.
+  A USB microSD reader works.
+- On macOS, eject the drive before unplugging it. Otherwise Finder leaves `._` files that show up
+  in the menu as games; `dot_clean -m /Volumes/<drive>` removes them.
+
+### Hardware
+
+- Connect the USB drive, gamepads and keyboard to the USB-C port through a hub (up to 7 ports)
+  and an OTG adapter with power pass-through.
+- A USB keyboard works in the menu: arrow keys move, Enter or D is A, Space or S is B.
+- Status messages appear just above the TangCore logo.
 
 ---
 

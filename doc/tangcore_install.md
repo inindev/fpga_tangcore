@@ -21,7 +21,7 @@
 | Tang Mega 60K     | 60K LUT       | All cores                    | ✔️ Great   |
 | Tang Mega 138K    | 138K LUT      | All cores                    | ✔️ Great   |
 | Tang Primer 25K   | 25K LUT       | NESTang, SNESTang only       | ⚠️ Limited   |
-| Tang Nano 20K     | 20K LUT       | *Unsupported*                | ❌ Not working   |
+| Tang Nano 20K     | 20K LUT       | NESTang, SNESTang only       | ⚠️ Experimental (inindev fork, see `docs/user-guide/installation.md`) |
 
 ---
 

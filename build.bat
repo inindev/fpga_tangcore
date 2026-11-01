@@ -53,7 +53,7 @@ if !ERROR_COUNT! GTR 0 (
 
 :do_firmware
 echo Building firmware...
-cd firmware-bl616
+cd fpga_firmware-bl616
 call buildall.bat
 if errorlevel 1 (
     echo Error building firmware
@@ -64,7 +64,7 @@ exit /b
 
 :do_nestang
 echo Building NESTang...
-cd nestang
+cd fpga_nestang
 call buildall.bat
 if errorlevel 1 (
     echo Error building NESTang
@@ -75,7 +75,7 @@ exit /b
 
 :do_snestang
 echo Building SNESTang...
-cd snestang
+cd fpga_snestang
 call buildall.bat
 if errorlevel 1 (
     echo Error building SNESTang
@@ -125,10 +125,12 @@ if errorlevel 1 (
     echo Error building PCTang
     set /a ERROR_COUNT+=1
 )
+cd %BUILD_ROOT%
+exit /b
 
 :do_monitor
 echo Building monitor...
-cd monitor
+cd fpga_monitorcore
 call buildall.bat
 if errorlevel 1 (
     echo Error building monitor
@@ -149,23 +151,23 @@ if not exist "build\cores\console60k" mkdir build\cores\console60k
 if not exist "build\cores\console138k" mkdir build\cores\console138k
 
 echo Copy firmware files
-xcopy /y /s "firmware-bl616\buildall\*" "build\firmware-bl616\" >nul 2>&1
+xcopy /y /s "fpga_firmware-bl616\buildall\*" "build\firmware-bl616\" >nul 2>&1
 if errorlevel 1 (
     echo Warning: Some firmware files could not be copied
     set /a ERROR_COUNT+=1
 )
 
 echo Copy NESTang files
-copy /y "nestang\impl\pnr\nestang_console60k_ds2.bin" "build\cores\console60k\nestang.bin"
-copy /y "nestang\impl\pnr\nestang_console138k_ds2.bin" "build\cores\console138k\nestang.bin"
+copy /y "fpga_nestang\impl\pnr\nestang_console60k_ds2.bin" "build\cores\console60k\nestang.bin"
+copy /y "fpga_nestang\impl\pnr\nestang_console138k_ds2.bin" "build\cores\console138k\nestang.bin"
 if errorlevel 1 (
     echo Warning: Some NESTang files could not be copied
     set /a ERROR_COUNT+=1
 )
 
 echo Copy SNESTang files
-copy /y "snestang\impl\pnr\snestang_console60k_ds2.bin" "build\cores\console60k\snestang.bin"
-copy /y "snestang\impl\pnr\snestang_console138k_ds2.bin" "build\cores\console138k\snestang.bin"
+copy /y "fpga_snestang\impl\pnr\snestang_console60k_ds2.bin" "build\cores\console60k\snestang.bin"
+copy /y "fpga_snestang\impl\pnr\snestang_console138k_ds2.bin" "build\cores\console138k\snestang.bin"
 if errorlevel 1 (
     echo Warning: Some SNESTang files could not be copied
     set /a ERROR_COUNT+=1
@@ -204,8 +206,8 @@ if errorlevel 1 (
 )
 
 echo Copy monitor files
-copy /y "monitor\impl\pnr\monitor_console60k.bin" "build\cores\console60k\monitor.bin"
-copy /y "monitor\impl\pnr\monitor_console138k.bin" "build\cores\console138k\monitor.bin"
+copy /y "fpga_monitorcore\impl\pnr\monitor_console60k.bin" "build\cores\console60k\monitor.bin"
+copy /y "fpga_monitorcore\impl\pnr\monitor_console138k.bin" "build\cores\console138k\monitor.bin"
 if errorlevel 1 (
     echo Warning: Some monitor files could not be copied
     set /a ERROR_COUNT+=1
