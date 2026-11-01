@@ -108,7 +108,7 @@ exit /b
 
 :do_smstang
 echo Building SMSTang...
-cd smstang
+cd fpga_smstang
 call buildall.bat
 if errorlevel 1 (
     echo Error building SMSTang
@@ -190,8 +190,8 @@ if errorlevel 1 (
 )
 
 echo Copy SMSTang files
-copy /y "smstang\impl\pnr\smstang_console60k.bin" "build\cores\console60k\smstang.bin"
-copy /y "smstang\impl\pnr\smstang_console138k.bin" "build\cores\console138k\smstang.bin"
+copy /y "fpga_smstang\impl\pnr\smstang_console60k.bin" "build\cores\console60k\smstang.bin"
+copy /y "fpga_smstang\impl\pnr\smstang_console138k.bin" "build\cores\console138k\smstang.bin"
 if errorlevel 1 (
     echo Warning: Some SMSTang files could not be copied
     set /a ERROR_COUNT+=1

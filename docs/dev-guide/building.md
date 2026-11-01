@@ -17,7 +17,8 @@ the newest commits: `git submodule update --remote`.
 | `fpga_firmware-bl616` | BL616 firmware (menu, core loading, USB) |
 | `fpga_monitorcore` | Monitor core: the menu screen, loaded at power-on |
 | `fpga_nestang`, `fpga_snestang` | NES and SNES cores |
-| `gbatang`, `mdtang`, `smstang`, `pctang` | Other cores (upstream, Tang Console only) |
+| `fpga_smstang` | Master System core (Tang Console only; fork for a Linux build fix) |
+| `gbatang`, `mdtang`, `pctang` | Other cores (upstream, Tang Console only) |
 
 ## Tang Nano 20K (Linux)
 

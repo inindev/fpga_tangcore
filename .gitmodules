@@ -4,9 +4,6 @@
 [submodule "mdtang"]
 	path = mdtang
 	url = https://github.com/nand2mario/mdtang.git
-[submodule "smstang"]
-	path = smstang
-	url = https://github.com/nand2mario/smstang.git
 [submodule "pctang"]
 	path = pctang
 	url = https://github.com/nand2mario/pctang.git
@@ -25,4 +22,8 @@
 [submodule "fpga_firmware-bl616"]
 	path = fpga_firmware-bl616
 	url = ../fpga_firmware-bl616.git
+	branch = inindev
+[submodule "fpga_smstang"]
+	path = fpga_smstang
+	url = ../fpga_smstang.git
 	branch = inindev

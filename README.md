@@ -12,11 +12,11 @@ Please [file an issue](https://github.com/nand2mario/tangcore/issues) if you run
 
 > [!NOTE]
 > This is a fork of [nand2mario/tangcore](https://github.com/nand2mario/tangcore). The `inindev` branch adds
-> **Tang Nano 20K** support (NES and SNES) and uses forks of four submodules with the fixes it needs:
+> **Tang Nano 20K** support (NES and SNES) and uses forks of five submodules with the fixes it needs:
 > [fpga_nestang](https://github.com/inindev/fpga_nestang), [fpga_snestang](https://github.com/inindev/fpga_snestang),
-> [fpga_monitorcore](https://github.com/inindev/fpga_monitorcore) and
+> [fpga_smstang](https://github.com/inindev/fpga_smstang), [fpga_monitorcore](https://github.com/inindev/fpga_monitorcore) and
 > [fpga_firmware-bl616](https://github.com/inindev/fpga_firmware-bl616) (now on the official Bouffalo SDK).
-> See [Tang Nano 20K](#-tang-nano-20k) below. Only the Nano 20K has been tested on this branch.
+> See [Tang Nano 20K](#-tang-nano-20k) below. This branch has been tested on the Tang Nano 20K and the Tang Console 138K.
 
 ## 🎮 Supported Systems
 
