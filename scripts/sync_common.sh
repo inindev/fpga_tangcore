@@ -10,7 +10,7 @@
 set -eu
 
 root=$(cd "$(dirname "$0")/.." && pwd)
-cores="fpga_nestang fpga_snestang fpga_monitorcore"
+cores="fpga_nestang fpga_snestang fpga_smstang fpga_monitorcore"
 files="iosys/iosys_bl616.v iosys/textdisp.v iosys/uart_fixed.v"
 
 mode=sync

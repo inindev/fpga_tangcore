@@ -17,7 +17,7 @@ generated per FPGA family and holds the core's logo.
 To change a shared file:
 
 1. Edit it here.
-2. `scripts/sync_common.sh` copies it into `fpga_nestang`, `fpga_snestang` and `fpga_monitorcore`.
+2. `scripts/sync_common.sh` copies it into `fpga_nestang`, `fpga_snestang`, `fpga_smstang` and `fpga_monitorcore`.
 3. Build and test, then commit in each core that changed and here.
 
 `scripts/sync_common.sh --check` lists cores whose copies differ.
