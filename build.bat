@@ -86,7 +86,7 @@ exit /b
 
 :do_gbatang
 echo Building GBATang...
-cd gbatang
+cd fpga_gbatang
 call buildall.bat
 if errorlevel 1 (
     echo Error building GBATang
@@ -174,8 +174,8 @@ if errorlevel 1 (
 )
 
 echo Copy GBATang files
-copy /y "gbatang\impl\pnr\gbatang_console60k.bin" "build\cores\console60k\gbatang.bin"
-copy /y "gbatang\impl\pnr\gbatang_console138k.bin" "build\cores\console138k\gbatang.bin"
+copy /y "fpga_gbatang\impl\pnr\gbatang_console60k.bin" "build\cores\console60k\gbatang.bin"
+copy /y "fpga_gbatang\impl\pnr\gbatang_console138k.bin" "build\cores\console138k\gbatang.bin"
 if errorlevel 1 (
     echo Warning: Some GBATang files could not be copied
     set /a ERROR_COUNT+=1

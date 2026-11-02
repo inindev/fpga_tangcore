@@ -18,7 +18,8 @@ the newest commits: `git submodule update --remote`.
 | `fpga_monitorcore` | Monitor core: the menu screen, loaded at power-on |
 | `fpga_nestang`, `fpga_snestang` | NES and SNES cores |
 | `fpga_smstang` | Master System core (Tang Console only; fork for a Linux build fix) |
-| `gbatang`, `mdtang`, `pctang` | Other cores (upstream, Tang Console only) |
+| `fpga_gbatang` | Game Boy Advance core (Tang Console only; fork with the 138K overlay fix) |
+| `mdtang`, `pctang` | Other cores (upstream, Tang Console only) |
 
 ## Tang Nano 20K (Linux)
 
@@ -99,7 +100,7 @@ make             # build for one board
 cd fpga_nestang
 buildall         # build for all boards
 
-# the same for fpga_snestang, gbatang, mdtang and fpga_monitorcore
+# the same for fpga_snestang, fpga_gbatang, mdtang and fpga_monitorcore
 ```
 
 ### Collect building results
