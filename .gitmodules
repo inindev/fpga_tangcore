@@ -8,25 +8,25 @@
 	branch = master
 [submodule "fpga_nestang"]
 	path = fpga_nestang
-	url = git@github.com:inindev/fpga_nestang.git
+	url = https://github.com/inindev/fpga_nestang.git
 	branch = inindev
 [submodule "fpga_snestang"]
 	path = fpga_snestang
-	url = git@github.com:inindev/fpga_snestang.git
+	url = https://github.com/inindev/fpga_snestang.git
 	branch = inindev
 [submodule "fpga_monitorcore"]
 	path = fpga_monitorcore
-	url = git@github.com:inindev/fpga_monitorcore.git
+	url = https://github.com/inindev/fpga_monitorcore.git
 	branch = inindev
 [submodule "fpga_firmware-bl616"]
 	path = fpga_firmware-bl616
-	url = git@github.com:inindev/fpga_firmware-bl616.git
+	url = https://github.com/inindev/fpga_firmware-bl616.git
 	branch = inindev
 [submodule "fpga_smstang"]
 	path = fpga_smstang
-	url = git@github.com:inindev/fpga_smstang.git
+	url = https://github.com/inindev/fpga_smstang.git
 	branch = inindev
 [submodule "fpga_gbatang"]
 	path = fpga_gbatang
-	url = git@github.com:inindev/fpga_gbatang.git
+	url = https://github.com/inindev/fpga_gbatang.git
 	branch = inindev
