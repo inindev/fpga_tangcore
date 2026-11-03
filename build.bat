@@ -97,7 +97,7 @@ exit /b
 
 :do_mdtang
 echo Building MDTang...
-cd mdtang
+cd fpga_mdtang
 call buildall.bat
 if errorlevel 1 (
     echo Error building MDTang
@@ -119,7 +119,7 @@ exit /b
 
 :do_pctang
 echo Building PCTang...
-cd pctang
+cd fpga_pctang
 call buildall.bat
 if errorlevel 1 (
     echo Error building PCTang
@@ -182,8 +182,8 @@ if errorlevel 1 (
 )
 
 echo Copy MDTang files
-copy /y "mdtang\impl\pnr\mdtang_console60k.bin" "build\cores\console60k\mdtang.bin"
-copy /y "mdtang\impl\pnr\mdtang_console138k.bin" "build\cores\console138k\mdtang.bin"
+copy /y "fpga_mdtang\impl\pnr\mdtang_console60k.bin" "build\cores\console60k\mdtang.bin"
+copy /y "fpga_mdtang\impl\pnr\mdtang_console138k.bin" "build\cores\console138k\mdtang.bin"
 if errorlevel 1 (
     echo Warning: Some MDTang files could not be copied
     set /a ERROR_COUNT+=1
@@ -198,8 +198,8 @@ if errorlevel 1 (
 )
 
 echo Copy PCTang files
-copy /y "pctang\impl\pnr\pctang_console60k.bin" "build\cores\console60k\pctang.bin"
-copy /y "pctang\impl\pnr\pctang_console138k.bin" "build\cores\console138k\pctang.bin"
+copy /y "fpga_pctang\impl\pnr\pctang_console60k.bin" "build\cores\console60k\pctang.bin"
+copy /y "fpga_pctang\impl\pnr\pctang_console138k.bin" "build\cores\console138k\pctang.bin"
 if errorlevel 1 (
     echo Warning: Some PCTang files could not be copied
     set /a ERROR_COUNT+=1

@@ -10,7 +10,7 @@
 set -eu
 
 root=$(cd "$(dirname "$0")/.." && pwd)
-all="fpga_nestang fpga_snestang fpga_smstang fpga_gbatang fpga_monitorcore"
+all="fpga_nestang fpga_snestang fpga_smstang fpga_gbatang fpga_monitorcore fpga_mdtang fpga_pctang"
 
 # One line per group: <files in common/> | <folder in the core's src/> | <cores>
 # A folder of "hdmi" means the core's own HDMI folder: src/hdmi2 or src/hdmi.

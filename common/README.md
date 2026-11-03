@@ -22,8 +22,9 @@ To change a shared file:
 
 1. Edit it here.
 2. `scripts/sync_common.sh` copies it into the cores that use it: iosys and HDMI into
-   `fpga_nestang`, `fpga_snestang`, `fpga_smstang`, `fpga_gbatang` and `fpga_monitorcore`;
-   `video_out.v` into `fpga_nestang` and `fpga_snestang`.
+   `fpga_nestang`, `fpga_snestang`, `fpga_smstang`, `fpga_gbatang`, `fpga_mdtang`,
+   `fpga_pctang` and `fpga_monitorcore`; `video_out.v` into `fpga_nestang` and
+   `fpga_snestang`.
 3. Build and test, then commit in each core that changed and here.
 
 `scripts/sync_common.sh --check` lists cores whose copies differ.

@@ -1,32 +1,32 @@
-[submodule "mdtang"]
-	path = mdtang
-	url = https://github.com/nand2mario/mdtang.git
-	branch = master
-[submodule "pctang"]
-	path = pctang
-	url = https://github.com/nand2mario/pctang.git
-	branch = master
-[submodule "fpga_nestang"]
-	path = fpga_nestang
-	url = https://github.com/inindev/fpga_nestang.git
+[submodule "fpga_firmware-bl616"]
+	path = fpga_firmware-bl616
+	url = https://github.com/inindev/fpga_firmware-bl616.git
 	branch = inindev
-[submodule "fpga_snestang"]
-	path = fpga_snestang
-	url = https://github.com/inindev/fpga_snestang.git
+[submodule "fpga_gbatang"]
+	path = fpga_gbatang
+	url = https://github.com/inindev/fpga_gbatang.git
+	branch = inindev
+[submodule "fpga_mdtang"]
+	path = fpga_mdtang
+	url = https://github.com/inindev/fpga_mdtang.git
 	branch = inindev
 [submodule "fpga_monitorcore"]
 	path = fpga_monitorcore
 	url = https://github.com/inindev/fpga_monitorcore.git
 	branch = inindev
-[submodule "fpga_firmware-bl616"]
-	path = fpga_firmware-bl616
-	url = https://github.com/inindev/fpga_firmware-bl616.git
+[submodule "fpga_nestang"]
+	path = fpga_nestang
+	url = https://github.com/inindev/fpga_nestang.git
+	branch = inindev
+[submodule "fpga_pctang"]
+	path = fpga_pctang
+	url = https://github.com/inindev/fpga_pctang.git
 	branch = inindev
 [submodule "fpga_smstang"]
 	path = fpga_smstang
 	url = https://github.com/inindev/fpga_smstang.git
 	branch = inindev
-[submodule "fpga_gbatang"]
-	path = fpga_gbatang
-	url = https://github.com/inindev/fpga_gbatang.git
+[submodule "fpga_snestang"]
+	path = fpga_snestang
+	url = https://github.com/inindev/fpga_snestang.git
 	branch = inindev
