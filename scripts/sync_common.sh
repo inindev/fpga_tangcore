@@ -10,8 +10,15 @@
 set -eu
 
 root=$(cd "$(dirname "$0")/.." && pwd)
-cores="fpga_nestang fpga_snestang fpga_smstang fpga_gbatang fpga_monitorcore"
-files="iosys/iosys_bl616.v iosys/textdisp.v iosys/uart_fixed.v"
+all="fpga_nestang fpga_snestang fpga_smstang fpga_gbatang fpga_monitorcore"
+
+# One line per group: <files in common/> | <folder in the core's src/> | <cores>
+# A folder of "hdmi" means the core's own HDMI folder: src/hdmi2 or src/hdmi.
+groups="
+iosys/iosys_bl616.v iosys/textdisp.v iosys/uart_fixed.v | iosys | $all
+video/video_out.v | . | fpga_nestang fpga_snestang
+$(cd "$root/common" && ls hdmi/*.sv | tr '\n' ' ') | hdmi | $all
+"
 
 mode=sync
 case "${1:-}" in
@@ -20,26 +27,37 @@ case "${1:-}" in
     *) echo "usage: $0 [--check]" >&2; exit 2 ;;
 esac
 
-status=0
-for c in $cores; do
-    if [ ! -d "$root/$c/src" ]; then
-        echo "missing: $c (run: git submodule update --init -- $c)" >&2
-        status=1
-        continue
-    fi
-    for f in $files; do
-        src="$root/common/$f"
-        dst="$root/$c/src/$f"
-        if cmp -s "$src" "$dst"; then
+rc=0
+while IFS='|' read -r files dir cores; do
+    [ -n "$files" ] || continue
+    dir=$(echo $dir)
+    for c in $cores; do
+        if [ ! -d "$root/$c/src" ]; then
+            echo "missing: $c (run: git submodule update --init -- $c)" >&2
+            rc=1
             continue
         fi
-        if [ "$mode" = check ]; then
-            echo "differs: $c/src/$f"
-            status=1
-        else
-            cp "$src" "$dst"
-            echo "updated: $c/src/$f"
+        d=$dir
+        if [ "$d" = hdmi ]; then
+            if [ -d "$root/$c/src/hdmi2" ]; then d=hdmi2; else d=hdmi; fi
         fi
+        for f in $files; do
+            src="$root/common/$f"
+            if [ "$d" = . ]; then rel=$c/src/$(basename "$f"); else rel=$c/src/$d/$(basename "$f"); fi
+            dst="$root/$rel"
+            if cmp -s "$src" "$dst"; then
+                continue
+            fi
+            if [ "$mode" = check ]; then
+                echo "differs: $rel"
+                rc=1
+            else
+                cp "$src" "$dst"
+                echo "updated: $rel"
+            fi
+        done
     done
-done
-exit $status
+done <<EOF
+$groups
+EOF
+exit $rc
