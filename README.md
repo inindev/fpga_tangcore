@@ -67,8 +67,9 @@ The Nano 20K runs the TangCore firmware on its on-board BL616, next to Sipeed's 
 firmware, in place of [FPGA-Companion](https://github.com/MiSTle-Dev/FPGA-Companion).
 
 1. Build the cores and firmware: [building from sources](docs/dev-guide/building.md#tang-nano-20k-linux).
-2. Write the firmware to the BL616 at 0x40000: [installation](docs/user-guide/installation.md#tang-nano-20k).
-3. Put the cores on a USB drive as `cores/nano20k/monitor.bin`, `nestang.bin` and `snestang.bin`,
+2. Write the firmware to the BL616 at 0x40000 and the monitor core (the menu) to the FPGA's
+   flash: [installation](docs/user-guide/installation.md#tang-nano-20k).
+3. Put the cores on a USB drive as `cores/nano20k/nestang.bin` and `snestang.bin`,
    with ROMs in `nes/` and `snes/`. The board's TF slot can't be used (it's wired to the FPGA);
    a USB microSD reader works.
 4. Connect the drive, gamepads and keyboard through a USB hub and an OTG adapter with power

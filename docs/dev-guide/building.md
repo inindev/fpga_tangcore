@@ -15,7 +15,7 @@ the newest commits: `git submodule update --remote`.
 | Folder | What |
 |---|---|
 | `fpga_firmware-bl616` | BL616 firmware (menu, core loading, USB) |
-| `fpga_monitorcore` | Monitor core: the menu screen, loaded at power-on |
+| `fpga_monitorcore` | Monitor core: the menu screen, loaded by the FPGA from its own flash |
 | `fpga_nestang`, `fpga_snestang` | NES and SNES cores |
 | `fpga_smstang` | Master System core (Tang Console only; fork for a Linux build fix) |
 | `fpga_gbatang` | Game Boy Advance core (Tang Console only; fork with the 138K overlay fix) |
@@ -64,9 +64,12 @@ Copy the cores to the drive under the names the firmware looks for:
 
 | Build output | On the USB drive |
 |---|---|
-| `fpga_monitorcore/impl/pnr/monitor_nano20k.bin` | `cores/nano20k/monitor.bin` |
 | `fpga_nestang/impl/pnr/nestang_nano20k.bin` | `cores/nano20k/nestang.bin` |
 | `fpga_snestang/impl/pnr/snestang_nano20k.bin` | `cores/nano20k/snestang.bin` |
+
+`monitor_nano20k.bin` goes to the FPGA's flash instead (see the
+[installation guide](../user-guide/installation.md#tang-nano-20k)); on the drive as
+`cores/nano20k/monitor.bin` it is only loaded from the Cores menu.
 
 Installing the firmware is described in the [installation guide](../user-guide/installation.md#tang-nano-20k).
 

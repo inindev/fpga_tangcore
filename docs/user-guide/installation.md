@@ -44,6 +44,14 @@
    ![Firmware Flash Success](dev_cube.png)  
    *Green status indicates successful programming*
 
+5. Menu core: the FPGA shows the main menu from an image in its own flash, so write the
+   monitor core there once with [openFPGALoader](https://github.com/trabucayre/openFPGALoader).
+   Connect the board's USB-C port to the computer (no OTG adapter) and run:
+   ```bash
+   openFPGALoader -b tangconsole -f cores/console138k/monitor.bin   # or console60k
+   ```
+   Write it again whenever the monitor core changes.
+
 ---
 
 ## 🕹️ Game System Setup
@@ -99,9 +107,12 @@ release package yet; build the cores and firmware as in [building from sources](
 3. Write `fpga_firmware-bl616/build/build_out/tangcore_bl616.bin` to address 0x40000 with
    Bouffalo's flash tool (`BLFlashCommand`, or the open-source `bflb-mcu-tool`).
 
-With TangCore installed, the board no longer shows up as a USB debugger when plugged into a
-computer, because the BL616 starts TangCore instead. To flash the FPGA with openFPGALoader again,
-erase 0x40000 or write FPGA-Companion back there.
+4. Write the monitor core (the main menu) to the FPGA's own flash, with the board plugged into
+   the computer (no OTG adapter):
+   ```bash
+   openFPGALoader -b tangnano20k -f fpga_monitorcore/impl/pnr/monitor_nano20k.bin
+   ```
+   Write it again whenever the monitor core changes.
 
 ### USB drive
 
@@ -109,7 +120,7 @@ erase 0x40000 or write FPGA-Companion back there.
 📁 /
 ├── 📁 cores/
 │    └── 📁 nano20k/
-│         ├── 🗎 monitor.bin    # from monitor_nano20k.bin
+│         ├── 🗎 monitor.bin    # optional: menu core, only loaded from Cores
 │         ├── 🗎 nestang.bin    # from nestang_nano20k.bin
 │         └── 🗎 snestang.bin   # from snestang_nano20k.bin
 ├── 📁 nes/          # .nes rom files
