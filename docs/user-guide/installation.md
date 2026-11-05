@@ -44,13 +44,37 @@
    ![Firmware Flash Success](dev_cube.png)  
    *Green status indicates successful programming*
 
-5. Menu core: the FPGA shows the main menu from an image in its own flash, so write the
-   monitor core there once with [openFPGALoader](https://github.com/trabucayre/openFPGALoader).
-   Connect the board's USB-C port to the computer (no OTG adapter) and run:
-   ```bash
-   openFPGALoader -b tangconsole -f cores/console138k/monitor.bin   # or console60k
-   ```
-   Write it again whenever the monitor core changes.
+5. Menu core: write it as in [writing the menu core](#writing-the-menu-core) below.
+
+### Writing the menu core
+
+The FPGA shows the main menu from an image in its own flash, the monitor core, so write it
+there once with [openFPGALoader](https://github.com/trabucayre/openFPGALoader), and again
+whenever the monitor core changes. openFPGALoader goes through Sipeed's USB debugger on the
+BL616, which TangCore hands the USB port to in **Device Mode**:
+
+1. Remove the SD card and the USB drive (on the Nano 20K, there is only the USB drive).
+2. Connect the board's USB-C port straight to the computer: no OTG adapter, no hub.
+3. Power up. Within about 10 seconds the computer sees `SIPEED USB Debugger`. If TangCore
+   starts first, it finds no storage and nothing on its USB port, shows "Device Mode" (when a
+   menu core is already in flash; on a first install the screen stays blank) and restarts as
+   the debugger.
+4. Write the monitor core for your board:
+
+   | Board | Command |
+   |---|---|
+   | Tang Console 60K | `openFPGALoader -b tangconsole -f cores/console60k/monitor.bin` |
+   | Tang Console 138K | `openFPGALoader -b tangconsole -f cores/console138k/monitor.bin` |
+   | Tang Nano 20K | `openFPGALoader -b tangnano20k -f cores/nano20k/monitor.bin` |
+   | Tang Primer 25K | `openFPGALoader -b tangprimer25k -f cores/primer25k/monitor.bin` |
+   | Tang Mega 60K | `openFPGALoader -c ft2232 -f cores/mega60k/monitor.bin` |
+   | Tang Mega 138K Pro | `openFPGALoader -b tangmega138k -f cores/mega138k/monitor.bin` |
+
+5. Unplug, put the SD card or USB drive back, and power up: the menu appears.
+
+Device Mode has been tested on the Nano 20K and the Console 138K; the Console 60K runs the
+same code. On the Primer 25K and the Mega boards it is untested. If the computer never sees
+the debugger, use [writing the menu core without Device Mode](monitor-core-recovery.md).
 
 ---
 
@@ -71,6 +95,9 @@
 └── 📁 pc/           # .img floppy images
 │    └── 🗎 bios.bin  # PC 5160 BIOS
 ```
+
+File names can use accented Latin letters (é, ñ, ö, ß, ...); characters from other scripts show
+as `?` in the menu.
 
 ### Hardware Assembly
 1. Connect components as shown (DS2 controller setup shown):
@@ -106,13 +133,9 @@ release package yet; build the cores and firmware as in [building from sources](
    plug it into the computer, release. It shows up as `Bouffalo CDC DEMO`.
 3. Write `fpga_firmware-bl616/build/build_out/tangcore_bl616.bin` to address 0x40000 with
    Bouffalo's flash tool (`BLFlashCommand`, or the open-source `bflb-mcu-tool`).
-
-4. Write the monitor core (the main menu) to the FPGA's own flash, with the board plugged into
-   the computer (no OTG adapter):
-   ```bash
-   openFPGALoader -b tangnano20k -f fpga_monitorcore/impl/pnr/monitor_nano20k.bin
-   ```
-   Write it again whenever the monitor core changes.
+4. Write the monitor core (the main menu) to the FPGA's own flash in Device Mode, as in
+   [writing the menu core](#writing-the-menu-core), with
+   `fpga_monitorcore/impl/pnr/monitor_nano20k.bin`.
 
 ### USB drive
 
@@ -137,7 +160,7 @@ release package yet; build the cores and firmware as in [building from sources](
 - Connect the USB drive, gamepads and keyboard to the USB-C port through a hub (up to 7 ports)
   and an OTG adapter with power pass-through.
 - A USB keyboard works in the menu: arrow keys move, Enter or D is A, Space or S is B.
-- Status messages appear just above the TangCore logo.
+- Status messages appear on the bottom row of the menu.
 
 ---
 

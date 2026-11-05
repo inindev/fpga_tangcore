@@ -81,9 +81,11 @@ For detailed setup instructions, please refer to our [Installation Guide](https:
 
 1. Download the latest [TangCore release](https://github.com/nand2mario/tangcore/releases)
 2. Flash the firmware using Bouffalo Lab Dev Cube
-3. Prepare a USB drive with FPGA cores and your game ROMs
-4. Connect required peripherals (HDMI and controller)
-5. Power on and enjoy!
+3. Write the menu core to the FPGA's flash with openFPGALoader, in Device Mode
+   ([writing the menu core](https://nand2mario.github.io/tangcore/user-guide/installation/#writing-the-menu-core))
+4. Prepare a USB drive with FPGA cores and your game ROMs
+5. Connect required peripherals (HDMI and controller)
+6. Power on and enjoy!
 
 ## 🛠️ Documentation
 

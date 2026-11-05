@@ -63,25 +63,35 @@ You can also watch the traffic the other way (FPGA to MCU) on the other pin (BL6
 
 ## UART Protocol
 
-The protocol is handled in `iosys_bl616.v`. If you need to debug BL616-FPGA communication, then here's the protocol in use:
+The protocol is handled in `iosys_bl616.v` (the comment there is the reference). If you need to debug BL616-FPGA communication, then here's the protocol in use.
+
+Every message is a frame: `0xAA frame_len[15:0] payload`, where the payload is `frame_len` bytes and starts with the command or response byte. Data lengths below are implied by `frame_len`.
 
 | Command | Description |
 |-----|-----|
-| 0x01|get core ID (response: 0x11, followed by one byte of core ID). this is used to identify the core and check whether the core is ready|
-|0x02|get core config string (response: 0x22, followed by null-terminated string)|
+|0x01|get core ID (response 0x01). Used to identify the core and check whether it is ready|
+|0x02|get core config string (response 0x02)|
 |0x03 x[31:0]|set core config status|
 |0x04 x[7:0] y[7:0]|move overlay text cursor to (x, y)|
-|0x05 <string>|display null-terminated string from cursor|
-|0x06 loading_state[7:0]|set loading state (rom_loading)|
-|0x07 len[23:0] <data>|load len (MSB-first) bytes of data to rom_do|
-|0x08 x[7:0]|turn overlay on/off|
+|0x05 <codes>|display characters from the cursor, one byte per character: the font's Latin-1 code (the firmware converts its UTF-8 text)|
+|0x06 loading_state[7:0]|set loading state (0: core running, non-0: loading)|
+|0x07 <data>|load data to rom_do|
+|0x08 x[7:0]|x[0]: turn overlay on/off|
+|0x09 hid1[15:0] hid2[15:0]|USB joystick state|
+|0x0a <data_sector>|a sector (512 bytes) of data for the floppy data FIFO|
+|0x0b addr[15:0] data[15:0]|write to the disk management interface|
+|0x0c <scancode>|PS/2 scancode|
+|0x0d <string>|debug printf; the core ignores it|
+|0x0f row[7:0] x0[7:0] x1[7:0]|overlay highlight bar on columns x0-x1 of row (row 0xFF: none)|
 
 Messages from FPGA to BL616:
 
 | Response | Description |
 |-----|-----|
-| 0x01 joy1[7:0] joy1[15:8] joy2[7:0] joy2[15:8]|     Every 20ms, send joypad state|
-|0x11 core_id[7:0]|send core ID|
-|0x22 <string>|send null-terminated core config string|
+|0x01 core_id[7:0]|core ID|
+|0x02 <string>|core config string|
+|0x03 joy1[15:0] joy2[15:0]|every 20 ms, DS2/SNES joypad state|
+|0x04 lba[15:0] <data_512>|write a sector to disk|
+|0x05 lba[15:0]|read a sector from disk (answered with command 0x0a)|
 
 
