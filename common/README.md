@@ -17,7 +17,8 @@ copies in step.
 Per-core differences are parameters of `iosys_bl616` (`CORE_ID`, `FREQ`, `COLOR_LOGO`)
 and `video_out` (`PIX_FMT`, `DW`, `AUDIO_RATE`), set where each core instantiates them.
 `gowin_dpb_menu.v` is not shared: it holds the core's logo, and `scripts/font_glyphs.py`
-generates it (the font is the same in all cores). Neither are `nes_video.sv` and
+generates it (the font, Serif, is the same in all cores; the firmware writes the Sans font
+over it when that is chosen in Options). Neither are `nes_video.sv` and
 `snes_video.v`, which feed each core's picture into `video_out`.
 
 Clock crossings: a register named `*_meta` is the first stage of a synchronizer

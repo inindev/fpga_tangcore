@@ -84,7 +84,7 @@ Every message is a frame: `0xAA frame_len[15:0] payload`, where the payload is `
 |0x0d <string>|debug printf; the core ignores it|
 |0x0e volume[7:0]|master volume 0-10 (above 10: 10), 3 dB per step, 0 = mute; 7 from power-up|
 |0x0f row[7:0] x0[7:0] x1[7:0]|overlay highlight bar on columns x0-x1 of row (row 0xFF: none)|
-|0x10 code[7:0] <bytes>|font bytes from character `code` on (8 per character, top row first, bit 0 leftmost); only codes 0x80-0x9F are written (the volume bar's bitmap)|
+|0x10 code[7:0] <bytes>|font bytes from character `code` on (8 per character, top row first, bit 0 leftmost); only codes 0x20-0xFF are written: the menu font chosen in Options, and the volume bar's bitmap in 0x80-0x9F|
 
 Messages from FPGA to BL616:
 

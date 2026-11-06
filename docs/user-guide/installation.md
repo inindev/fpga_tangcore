@@ -109,12 +109,12 @@ as `?` in the menu.
    - Insert USB drive → Connect OTG → Apply power
 
 3. Initial Boot:
-   - FPGA auto-programs (5-7 sec)
-   - Main menu appears 
+   - The FPGA loads the menu core from its own flash
+   - Main menu appears
 
    ![](tangcore-menu.png)
 
-   *Navigation using gamepad*
+   *Navigation using gamepad: see [controls](controllers.md#controls)*
 
 ---
 
@@ -157,10 +157,12 @@ release package yet; build the cores and firmware as in [building from sources](
 
 ### Hardware
 
-- Connect the USB drive, gamepads and keyboard to the USB-C port through a hub (up to 7 ports)
-  and an OTG adapter with power pass-through.
-- A USB keyboard works in the menu: arrow keys move, Enter or D is A, Space or S is B.
-- Status messages appear on the bottom row of the menu.
+- Connect the USB drive, gamepads and keyboard to the USB-C port through a hub and an OTG
+  adapter with power pass-through.
+- A USB keyboard works in the menu: arrow keys move, Enter or D is A, Space or S is B. All
+  gamepad and keyboard controls are listed under [controls](controllers.md#controls).
+- Status messages and button hints appear on the row under the menu's frame; the bottom row
+  shows the firmware version.
 
 ---
 

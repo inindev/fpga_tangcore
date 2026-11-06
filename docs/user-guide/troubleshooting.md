@@ -24,4 +24,7 @@ If you use USB controllers,
 
 * Only the Sipeed-provided USB gamepads can be used with the on-board USB-A port. If it is not recognized, replug the pad.
 * Other types of USB gamepads needs a USB hub to work. Please follow instructions on the [controllers page](controllers.md).
+* A keyboard or mouse on the hub, including wireless receivers such as Logitech's Bolt, doesn't
+  take a gamepad's place: plug gamepads and keyboards in any order.
+* Hubs with 8 or more ports work.
 
