@@ -76,13 +76,15 @@ Every message is a frame: `0xAA frame_len[15:0] payload`, where the payload is `
 |0x05 <codes>|display characters from the cursor, one byte per character: the font's Latin-1 code (the firmware converts its UTF-8 text)|
 |0x06 loading_state[7:0]|set loading state (0: core running, non-0: loading)|
 |0x07 <data>|load data to rom_do|
-|0x08 x[7:0]|x[0]: turn overlay on/off|
+|0x08 x[7:0]|x[0]: turn overlay on/off; x[1]: strip, only columns 8-23 of rows 23-24 on a dark band over the running game (volume bar)|
 |0x09 hid1[15:0] hid2[15:0]|USB joystick state|
 |0x0a <data_sector>|a sector (512 bytes) of data for the floppy data FIFO|
 |0x0b addr[15:0] data[15:0]|write to the disk management interface|
 |0x0c <scancode>|PS/2 scancode|
 |0x0d <string>|debug printf; the core ignores it|
+|0x0e volume[7:0]|master volume 0-10 (above 10: 10), 3 dB per step, 0 = mute; 7 from power-up|
 |0x0f row[7:0] x0[7:0] x1[7:0]|overlay highlight bar on columns x0-x1 of row (row 0xFF: none)|
+|0x10 code[7:0] <bytes>|font bytes from character `code` on (8 per character, top row first, bit 0 leftmost); only codes 0x80-0x9F are written (the volume bar's bitmap)|
 
 Messages from FPGA to BL616:
 

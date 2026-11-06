@@ -17,6 +17,7 @@ all="fpga_nestang fpga_snestang fpga_smstang fpga_gbatang fpga_monitorcore fpga_
 groups="
 iosys/iosys_bl616.v iosys/textdisp.v iosys/uart_fixed.v | iosys | $all
 video/video_out.v | . | fpga_nestang fpga_snestang
+audio/audio_cdc.v | . | fpga_nestang fpga_smstang fpga_gbatang fpga_mdtang
 usb/usb_hid_host.v usb/usb_hid_host_rom.hex | . | fpga_nestang fpga_snestang fpga_smstang fpga_gbatang fpga_mdtang fpga_monitorcore
 $(cd "$root/common" && ls hdmi/*.sv | tr '\n' ' ') | hdmi | $all
 "
