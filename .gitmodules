@@ -30,3 +30,6 @@
 	path = fpga_snestang
 	url = https://github.com/inindev/fpga_snestang.git
 	branch = inindev
+[submodule "fpga_taito_system_sj"]
+	path = fpga_taito_system_sj
+	url = https://github.com/inindev/fpga_taito_system_sj.git

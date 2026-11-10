@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # Write the menu fonts:
-# - each core's src/iosys/gowin_dpb_menu.v: the menu's text BRAM and font ROM (see
-#   textdisp.v), each a 2 KB Gowin DPB block. The ROM holds the default font, Serif, the same
-#   in all seven cores; each file keeps its own logo and initial character buffer, read from
+# - each core's src/iosys/gowin_dpb_menu.v (MENU_FILE below for a core that keeps it
+#   elsewhere): the menu's text BRAM and font ROM (see textdisp.v), each a 2 KB Gowin DPB block. The ROM holds the default font, Serif, the same
+#   in all the cores; each file keeps its own logo and initial character buffer, read from
 #   the file as it is.
 # - fpga_firmware-bl616/ui/menu_fonts.h: both fonts' text characters, which the firmware
 #   writes into the core's font (iosys command 0x10) for the font chosen in Options.
@@ -40,7 +40,14 @@ import zlib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CORES = ["fpga_nestang", "fpga_snestang", "fpga_smstang", "fpga_gbatang",
-         "fpga_monitorcore", "fpga_mdtang", "fpga_pctang"]
+         "fpga_monitorcore", "fpga_mdtang", "fpga_pctang", "fpga_taito_system_sj"]
+# Where a core keeps gowin_dpb_menu.v, if not in src/iosys/
+MENU_FILE = {"fpga_taito_system_sj": "tang/nano20k/iosys/gowin_dpb_menu.v"}
+
+
+def menu_file(core):
+    return os.path.join(ROOT, core, MENU_FILE.get(core, "src/iosys/gowin_dpb_menu.v"))
+
 
 # 8x8, top row first, leftmost pixel first ('#' on). Single lines on row/column 3, double
 # lines on rows/columns 2 and 4, the same middle as the letters (columns and rows 0-6).
@@ -353,7 +360,7 @@ def main():
     args = sys.argv[1:]
     glyphs, chars = glyph_bytes(), text_bytes(FONTS[0][0])
     if args[:1] == ["--logo"] and len(args) == 3 and args[1] in CORES:
-        path = os.path.join(ROOT, args[1], "src/iosys/gowin_dpb_menu.v")
+        path = menu_file(args[1])
         with open(path) as f:
             mem = update_font(read_bram(f.read()), glyphs, chars)
         mem[LOGO_BASE:LOGO_BASE + 128] = logo_bytes(args[2])
@@ -363,7 +370,7 @@ def main():
         return 0
     names = [f[0] for f in FONTS]
     if args[:1] == ["--preview"] and len(args) in (2, 3) and args[2:3] in ([], *[[n] for n in names]):
-        path = os.path.join(ROOT, CORES[0], "src/iosys/gowin_dpb_menu.v")
+        path = menu_file(CORES[0])
         with open(path) as f:
             font = update_font(read_bram(f.read()), glyphs, text_bytes(args[2] if len(args) == 3 else names[0]))[FONT_BASE:]
         preview(args[1], font)
@@ -375,7 +382,7 @@ def main():
     rc = 0
     outputs = []
     for core in CORES:
-        path = os.path.join(ROOT, core, "src/iosys/gowin_dpb_menu.v")
+        path = menu_file(core)
         with open(path) as f:
             text = f.read()
         outputs.append((path, text, write_bram(update_font(read_bram(text), glyphs, chars))))
