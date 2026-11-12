@@ -40,9 +40,11 @@ import zlib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CORES = ["fpga_nestang", "fpga_snestang", "fpga_smstang", "fpga_gbatang",
-         "fpga_monitorcore", "fpga_mdtang", "fpga_pctang", "fpga_taito_system_sj"]
+         "fpga_monitorcore", "fpga_mdtang", "fpga_pctang", "fpga_taito_system_sj",
+         "fpga_burgertime"]
 # Where a core keeps gowin_dpb_menu.v, if not in src/iosys/
-MENU_FILE = {"fpga_taito_system_sj": "tang/nano20k/iosys/gowin_dpb_menu.v"}
+MENU_FILE = {"fpga_taito_system_sj": "tang/nano20k/iosys/gowin_dpb_menu.v",
+             "fpga_burgertime": "tang/nano20k/iosys/gowin_dpb_menu.v"}
 
 
 def menu_file(core):

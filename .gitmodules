@@ -33,3 +33,6 @@
 [submodule "fpga_taito_system_sj"]
 	path = fpga_taito_system_sj
 	url = https://github.com/inindev/fpga_taito_system_sj.git
+[submodule "fpga_burgertime"]
+	path = fpga_burgertime
+	url = https://github.com/inindev/fpga_burgertime

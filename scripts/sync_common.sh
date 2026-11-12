@@ -15,17 +15,17 @@ all="fpga_nestang fpga_snestang fpga_smstang fpga_gbatang fpga_monitorcore fpga_
 # A core's source folder: src/, except where the core keeps its board files elsewhere
 srcdir() {
     case $1 in
-        fpga_taito_system_sj) echo tang/nano20k ;;
+        fpga_taito_system_sj|fpga_burgertime) echo tang/nano20k ;;
         *) echo src ;;
     esac
 }
 
 # One line per group: <files in common/> | <folder in the core's source folder> | <cores>
 # A folder of "hdmi" means the core's own HDMI folder: hdmi2 or hdmi.
-# fpga_taito_system_sj takes only iosys: its hdmi/ has the same code as common/hdmi but its
-# own header comments (SPDX lines).
+# fpga_taito_system_sj and fpga_burgertime take only iosys: their hdmi/ has the same code as
+# common/hdmi but its own header comments (SPDX lines).
 groups="
-iosys/iosys_bl616.v iosys/textdisp.v iosys/uart_fixed.v | iosys | $all fpga_taito_system_sj
+iosys/iosys_bl616.v iosys/textdisp.v iosys/uart_fixed.v | iosys | $all fpga_taito_system_sj fpga_burgertime
 video/video_out.v | . | fpga_nestang fpga_snestang
 audio/audio_cdc.v | . | fpga_nestang fpga_smstang fpga_gbatang fpga_mdtang
 usb/usb_hid_host.v usb/usb_hid_host_rom.hex | . | fpga_nestang fpga_snestang fpga_smstang fpga_gbatang fpga_mdtang fpga_monitorcore
