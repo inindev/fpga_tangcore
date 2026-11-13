@@ -30,9 +30,12 @@
 	path = fpga_snestang
 	url = https://github.com/inindev/fpga_snestang.git
 	branch = inindev
+[submodule "fpga_burgertime"]
+	path = fpga_burgertime
+	url = https://github.com/inindev/fpga_burgertime.git
+[submodule "fpga_galaga"]
+	path = fpga_galaga
+	url = https://github.com/inindev/fpga_galaga.git
 [submodule "fpga_taito_system_sj"]
 	path = fpga_taito_system_sj
 	url = https://github.com/inindev/fpga_taito_system_sj.git
-[submodule "fpga_burgertime"]
-	path = fpga_burgertime
-	url = https://github.com/inindev/fpga_burgertime

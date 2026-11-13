@@ -4,3 +4,4 @@ bouffalo_sdk_harbaum
 
 /build/
 __pycache__/
+.DS_Store
