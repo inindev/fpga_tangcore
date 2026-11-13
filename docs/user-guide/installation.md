@@ -67,13 +67,11 @@ BL616, which TangCore hands the USB port to in **Device Mode**:
    | Tang Console 138K | `openFPGALoader -b tangconsole -f cores/console138k/monitor.bin` |
    | Tang Nano 20K | `openFPGALoader -b tangnano20k -f cores/nano20k/monitor.bin` |
    | Tang Primer 25K | `openFPGALoader -b tangprimer25k -f cores/primer25k/monitor.bin` |
-   | Tang Mega 60K | `openFPGALoader -c ft2232 -f cores/mega60k/monitor.bin` |
-   | Tang Mega 138K Pro | `openFPGALoader -b tangmega138k -f cores/mega138k/monitor.bin` |
 
 5. Unplug, put the SD card or USB drive back, and power up: the menu appears.
 
 Device Mode has been tested on the Nano 20K and the Console 138K; the Console 60K runs the
-same code. On the Primer 25K and the Mega boards it is untested. If the computer never sees
+same code. On the Primer 25K it is untested. If the computer never sees
 the debugger, use [writing the menu core without Device Mode](monitor-core-recovery.md).
 
 ---

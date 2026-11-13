@@ -145,8 +145,6 @@ if not exist "build" mkdir build
 if not exist "build\firmware-bl616" mkdir build\firmware-bl616
 if not exist "build\cores" mkdir build\cores
 if not exist "build\cores\primer25k" mkdir build\cores\primer25k
-if not exist "build\cores\mega60k" mkdir build\cores\mega60k
-if not exist "build\cores\mega138k" mkdir build\cores\mega138k
 if not exist "build\cores\console60k" mkdir build\cores\console60k
 if not exist "build\cores\console138k" mkdir build\cores\console138k
 
