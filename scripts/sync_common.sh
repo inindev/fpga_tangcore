@@ -22,13 +22,16 @@ srcdir() {
 
 # One line per group: <files in common/> | <folder in the core's source folder> | <cores>
 # A folder of "hdmi" means the core's own HDMI folder: hdmi2 or hdmi.
-# fpga_taito_system_sj, fpga_burgertime and fpga_galaga take only iosys: their hdmi/ has the
+# fpga_taito_system_sj, fpga_burgertime and fpga_galaga take iosys and, for their GW5A
+# builds, usb (in tang/gw5a, next to their source folder tang/nano20k); their hdmi/ has the
 # same code as common/hdmi but its own header comments (SPDX lines).
+arcade="fpga_taito_system_sj fpga_burgertime fpga_galaga"
 groups="
-iosys/iosys_bl616.v iosys/textdisp.v iosys/uart_fixed.v | iosys | $all fpga_taito_system_sj fpga_burgertime fpga_galaga
+iosys/iosys_bl616.v iosys/textdisp.v iosys/uart_fixed.v | iosys | $all $arcade
 video/video_out.v | . | fpga_nestang fpga_snestang
 audio/audio_cdc.v | . | fpga_nestang fpga_smstang fpga_gbatang fpga_mdtang
 usb/usb_hid_host.v usb/usb_hid_host_rom.hex | . | fpga_nestang fpga_snestang fpga_smstang fpga_gbatang fpga_mdtang fpga_monitorcore
+usb/usb_hid_host.v usb/usb_hid_host_rom.hex | ../gw5a | $arcade
 $(cd "$root/common" && ls hdmi/*.sv | tr '\n' ' ') | hdmi | $all
 "
 
@@ -57,6 +60,7 @@ while IFS='|' read -r files dir cores; do
         for f in $files; do
             src="$root/common/$f"
             if [ "$d" = . ]; then rel=$c/$s/$(basename "$f"); else rel=$c/$s/$d/$(basename "$f"); fi
+            rel=$(echo "$rel" | sed 's|/[^/]*/\.\./|/|')     # tang/nano20k/../gw5a -> tang/gw5a
             dst="$root/$rel"
             if cmp -s "$src" "$dst"; then
                 continue
